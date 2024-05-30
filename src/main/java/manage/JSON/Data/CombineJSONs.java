@@ -16,9 +16,16 @@ public class CombineJSONs {
 
 	public static int dupClips = 0;
 	public static int totalClips = 0;
+	static int i = 0;
+	static List<ClipboardRecord> clipBulkRecords = new ArrayList<ClipboardRecord>();
 
 	public static void main(String[] args) throws IOException {
 
+		combineJSONsMethod();
+
+	}
+
+	public static void combineJSONsMethod() {
 		try {
 			List<ClipboardRecord> clipRecords = ReadJsonFile();
 			System.out.println(
@@ -28,10 +35,12 @@ public class CombineJSONs {
 
 			objectMapper.writeValue(new File("Data/Clipboard/JsonOutput/history-" + getTime() + ".json"), clipRecords);
 
+			objectMapper.writeValue(new File("Data/Clipboard/JsonOutput/history-" + getTime() + "_bulk.json"),
+					clipBulkRecords);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public static List<ClipboardRecord> ReadJsonFile() throws IOException {
@@ -64,13 +73,17 @@ public class CombineJSONs {
 					Contact contact = new Contact(Contact_name, Contact_phone);
 					ClipboardRecord curRecord = new ClipboardRecord(tempText, tempdateAdded, templength, contact);
 					if (!clipRecordsTimeAdded.contains(curRecord.getDateAdded())) {
-						clipRecords.add(curRecord);
-						clipRecordsTimeAdded.add(curRecord.getDateAdded());
-						System.out.println(
-								"Unique record added: " + curRecord.getDateAdded() + " file: " + file.getPath());
+						if (Integer.valueOf(templength) > 8000) {
+							System.out.println("Length: " + curRecord.getLength() + ", date added: "
+									+ curRecord.getDateAdded() + " : " + (i++) + ", file: " + file.getName());
+							clipBulkRecords.add(curRecord);
+						} else {
+							clipRecords.add(curRecord);
+							clipRecordsTimeAdded.add(curRecord.getDateAdded());
+						}
+//						System.out.println("Unique record added: " + curRecord.getDateAdded() + " file: " + file.getPath());
 					} else {
-						System.out.println(
-								"Duplicate record skipped: " + curRecord.getDateAdded() + " file: " + file.getPath());
+//						System.out.println("Duplicate record skipped: " + curRecord.getDateAdded() + " file: " + file.getPath());
 						dupClips++;
 					}
 					totalClips++;
@@ -83,7 +96,7 @@ public class CombineJSONs {
 
 	}
 
-	public static String getTime() {
+	private static String getTime() {
 
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM_dd_yy-HH-mm-ss");

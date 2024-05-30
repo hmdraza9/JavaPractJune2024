@@ -37,20 +37,6 @@ public class RefactorJSON {
 
 		ObjectMapper objectMapper1 = new ObjectMapper();
 
-//		List<ClipboardRecord> jsonDataList = objectMapper1.readValue(
-//				new File("Data/Clipboard/test/history-05_13_24-12-15-08.json"),
-//				objectMapper1.getTypeFactory().constructCollectionType(List.class, ClipboardRecord.class));
-//
-//		jsonDataList.forEach(data -> System.out.println(data.getContact().getName()));
-//
-//		for (ClipboardRecord cb : jsonDataList) {
-//			System.out.println(cb.getText());
-//			System.out.println(cb.getDateAdded());
-//			System.out.println(cb.getLength());
-//			System.out.println(cb.getContact().getName());
-//			System.out.println(cb.getContact().getPhone());
-//		}
-
 		File jsonReadFileDir = new File("Data/Clipboard");
 
 		for (File file : jsonReadFileDir.listFiles()) {
