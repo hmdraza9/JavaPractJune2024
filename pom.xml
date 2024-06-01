@@ -42,6 +42,24 @@
 			<artifactId>javax.json</artifactId>
 			<version>1.0.2</version>
 		</dependency>
+
+		<!-- GOOGLE APIs start-->
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-drive</artifactId>
+			<version>v3-rev197-1.25.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.api-client</groupId>
+			<artifactId>google-api-client</artifactId>
+			<version>1.23.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.oauth-client</groupId>
+			<artifactId>google-oauth-client-jetty</artifactId>
+			<version>1.23.0</version>
+		</dependency>
+		<!-- GOOGLE APIs ends-->
 	</dependencies>
 
 	<build>
