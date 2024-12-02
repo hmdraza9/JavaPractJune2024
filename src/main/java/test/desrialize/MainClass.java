@@ -21,7 +21,7 @@ public class MainClass {
 		
 		objectOutputStream.close();
 		
-		FileInputStream fis = new FileInputStream(new File(filePath));
+		FileInputStream fis = new FileInputStream(filePath);
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		User desrializedUser = (User)ois.readObject();
 		System.out.println("getId: "+desrializedUser.getId());
