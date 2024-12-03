@@ -30,3 +30,5 @@ target
 /.idea
 /.idea
 /.idea
+.idea/modules.xml
+.idea/workspace.xml
