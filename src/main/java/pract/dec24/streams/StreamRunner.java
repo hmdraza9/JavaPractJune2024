@@ -12,6 +12,10 @@ public class StreamRunner {
 //        Streams1.taskOneFour();
 //        Streams1.taskOneFive();
 //        Streams1.taskOneSix();
-        Streams1.taskOneSeven();
+//        Streams1.taskOneSeven();
+//        Streams2.taskOne();
+//        Streams2.taskTwo();
+//        Streams2.taskThree();
+        Streams2.taskFour();
     }
 }
