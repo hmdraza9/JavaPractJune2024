@@ -62,54 +62,54 @@ public class Streams2 {
         }
     }
 
-//    public static void makeWordNumMapOneChar(String code, String expString){
-//
-//
-//        StringBuilder finalString = new StringBuilder();
-//        while(code.length()>1){
-//
-//            String targetStr = code.substring(0,1);
-//            int count = Integer.parseInt(code.substring(1,2));
-//
-//            for(int i=0;i<count;i++){
-//                finalString.append(targetStr);// a aa aaa
-//            }
-//
-//            code = code.substring(2);
-//
-//        }
-//
-//        System.out.println("finalString: "+finalString);
-//        System.out.println(expString.contentEquals(finalString));
-//    }
+    public static void makeWordNumMapOneChar(String code, String expString){
 
-//    public static void makeWordNumMapMultipleChar(String code, String expString){
-//        StringBuilder codeSnip = new StringBuilder();
-//        StringBuilder countSnip = new StringBuilder();
-//        for(String c : code.split("")) {
-//            if (Character.isDigit(c.charAt(0))) {
-//                countSnip.append(c).append(",");
-//                codeSnip.append(" ");
-//            } else {
-//                codeSnip.append(c);
-//            }
-//        }
-//        codeSnip = new StringBuilder(codeSnip.toString().trim()); //a s d f
-//        countSnip = new StringBuilder(countSnip.toString().trim().replaceAll(","," ").trim()); //1,2,3,4 -> 1 2 3 4 -> 1 2 3 4
-//
-//        String[] regCode = codeSnip.toString().split(" ");
-//        String[] regCount = countSnip.toString().split(" ");
-//
-//        StringBuilder finalCode = new StringBuilder();
-//        int i = 0;
-//        while(i<regCode.length){
-//            for(int j=0;j<Integer.parseInt(regCount[i]);j++){
-//                finalCode.append(regCode[i]);
-//            }
-//            i++;
-//        }
-//        System.out.println(finalCode.toString().contentEquals(expString));
-//        System.out.println("finalCode: "+finalCode);
-//        System.out.println("expString: "+expString);
-//    }
+
+        StringBuilder finalString = new StringBuilder();
+        while(code.length()>1){
+
+            String targetStr = code.substring(0,1);
+            int count = Integer.parseInt(code.substring(1,2));
+
+            for(int i=0;i<count;i++){
+                finalString.append(targetStr);// a aa aaa
+            }
+
+            code = code.substring(2);
+
+        }
+
+        System.out.println("finalString: "+finalString);
+        System.out.println(expString.contentEquals(finalString));
+    }
+
+    public static void makeWordNumMapMultipleChar(String code, String expString){
+        StringBuilder codeSnip = new StringBuilder();
+        StringBuilder countSnip = new StringBuilder();
+        for(String c : code.split("")) {
+            if (Character.isDigit(c.charAt(0))) {
+                countSnip.append(c).append(",");
+                codeSnip.append(" ");
+            } else {
+                codeSnip.append(c);
+            }
+        }
+        codeSnip = new StringBuilder(codeSnip.toString().trim()); //a s d f
+        countSnip = new StringBuilder(countSnip.toString().trim().replaceAll(","," ").trim()); //1,2,3,4 -> 1 2 3 4 -> 1 2 3 4
+
+        String[] regCode = codeSnip.toString().split(" ");
+        String[] regCount = countSnip.toString().split(" ");
+
+        StringBuilder finalCode = new StringBuilder();
+        int i = 0;
+        while(i<regCode.length){
+            for(int j=0;j<Integer.parseInt(regCount[i]);j++){
+                finalCode.append(regCode[i]);
+            }
+            i++;
+        }
+        System.out.println(finalCode.toString().contentEquals(expString));
+        System.out.println("finalCode: "+finalCode);
+        System.out.println("expString: "+expString);
+    }
 }
