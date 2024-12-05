@@ -1,5 +1,7 @@
 package pract.dec24.streams;
 
+import static pract.dec24.streams.Streams2.*;
+
 public class StreamRunner {
     public static void main(String[] args){
 //        Streams1.taskOne("D");
@@ -16,6 +18,14 @@ public class StreamRunner {
 //        Streams2.taskOne();
 //        Streams2.taskTwo();
 //        Streams2.taskThree();
-        Streams2.taskFour();
+//        Streams2.taskFour();
+
+        String str = "my name is hamid and hamid is a qa engineer hamid likes java";
+
+        wordCountMap(str);
+        wordCountStream(str);
+//        makeWordNumMapMultipleChar("abba1stuv2dcba3fghij4", "abbastuvstuvdcbadcbadcbafghijfghijfghijfghij");
+//        makeWordNumMapMultipleChar("a1s2d3f4", "assdddffff");
+//        makeWordNumMapOneChar("a1s2d3f4", "assdddffff");
     }
 }
