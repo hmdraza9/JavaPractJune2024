@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 public class TimeDate {
@@ -31,12 +34,14 @@ public class TimeDate {
 		System.out.println("zoneddatetime2: "+zoneddatetime2);
 		
 		Set<String> allZoneIds = ZoneId.getAvailableZoneIds();
+		List<String> zones = new ArrayList<>(allZoneIds);
+		Collections.sort(zones);
 		int i=0;
-		
-		for(String zoneId : allZoneIds) {
-			if(zoneId.contains("Asia")) {
+		System.out.println("Printing "+zones.size()+" zones");
+		for(String zoneId : zones) {
+//			if(zoneId.contains("Asia")) {
 				System.out.println("zoneId: "+(i++)+". "+zoneId);
-			}
+//			}
 		}
 	}
 	

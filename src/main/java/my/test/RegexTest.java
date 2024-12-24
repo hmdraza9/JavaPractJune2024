@@ -24,6 +24,7 @@ public class RegexTest {
 
         List<Integer> numList = Arrays.asList(num);
         List<Integer> filteredList = new ArrayList<>();
+        List<Integer> finalList;
         Map<Integer, Integer> dupNum = new TreeMap<>();
 
         for(int a : numList){
@@ -35,7 +36,7 @@ public class RegexTest {
             }
         }
 
-        filteredList = new ArrayList<>(dupNum.values());
-        System.out.println(filteredList);
+        finalList = new ArrayList<>(dupNum.values());
+        System.out.println(finalList);
     }
 }

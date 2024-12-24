@@ -40,11 +40,11 @@ public class Streams1 {
     }
 
     //Find the sum of all even numbers in a list
-    public static void taskThree(int divi){
+    public static void taskThree(int divisor){
         List<Integer> nums = Arrays.asList(10, 15, 8, 23, 16, 87);
 
-        int condSum = nums.stream().filter(i -> i%divi==0).mapToInt(Integer::intValue).sum();
-        System.out.println("Conditional sum of eligible elements (divi="+divi+"): "+condSum);
+        int condSum = nums.stream().filter(i -> i%divisor==0).mapToInt(Integer::intValue).sum();
+        System.out.println("Conditional sum of eligible elements (divisor="+divisor+"): "+condSum);
     }
 
     //Group a list of names by their starting letter
