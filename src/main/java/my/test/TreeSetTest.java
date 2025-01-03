@@ -12,7 +12,7 @@ public class TreeSetTest {
 
         sortedNum.sort(Comparator.reverseOrder());
 
-        System.out.println(sortedNum);
+        System.out.println(sortedNum); 
 
     }
 }
