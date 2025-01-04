@@ -39,7 +39,7 @@ public class Streams2 {
         System.out.println("Sum of squares of numbers>5: "+sumOfMultiGreaterThan5);
     }
 
-    public static void wordCountStream(String str){
+    public static void wordCountStreamOld(String str){
         List<String> wordList = Arrays.asList(str.split(" "));
         Map<String, Long> varWordCountStream = wordList.stream().collect(Collectors.groupingBy(word -> word, Collectors.counting()));
         System.out.println("varWordCountStream: "+varWordCountStream);

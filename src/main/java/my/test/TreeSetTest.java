@@ -1,5 +1,6 @@
 package my.test;
 
+import java.io.File;
 import java.util.*;
 
 public class TreeSetTest {
@@ -12,7 +13,13 @@ public class TreeSetTest {
 
         sortedNum.sort(Comparator.reverseOrder());
 
-        System.out.println(sortedNum); 
+        System.out.println(sortedNum);
+
+        String fileName = "Test.xlsx.zip";
+        System.out.println(fileName.substring(fileName.lastIndexOf(".")+1).toUpperCase());
+
+        File file = new File("Matrix.js");
+        System.out.println(file.isDirectory());
 
     }
 }
