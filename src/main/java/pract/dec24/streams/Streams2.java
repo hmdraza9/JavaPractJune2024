@@ -5,111 +5,115 @@ import java.util.stream.Collectors;
 
 public class Streams2 {
 
-    //Given a list of lists, flatten it into a single list
-    public static void taskOne(){
-        List<List<Integer>> loloNumbers = Arrays.asList(Arrays.asList(1,2,3,4), Arrays.asList(5,6), Arrays.asList(7,8,9));
-        List<Integer> flattenedList = loloNumbers.stream().flatMap(List::stream).collect(Collectors.toList());
+    // Flattens a nested list of integers into a single list
+    public static void flattenNestedList() {
+        List<List<Integer>> nestedNumbers = Arrays.asList(
+                Arrays.asList(1, 2, 3, 4),
+                Arrays.asList(5, 6),
+                Arrays.asList(7, 8, 9)
+        );
+        List<Integer> flattenedList = nestedNumbers.stream()
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
 
-        System.out.println("Flattened list of numbers: "+flattenedList);
+        System.out.println("Flattened list of numbers: " + flattenedList);
     }
 
-    //Given a list of sentences, extract unique words
-    public static void taskTwo(){
+    // Extracts unique words from a list of sentences
+    public static void extractUniqueWords() {
         List<String> sentences = Arrays.asList("Java is fun", "Java Streams are powerful", "Practice makes perfect");
-        Set<String> uniqueWordsNoOrder = sentences.stream().flatMap(sentence -> Arrays.stream(sentence.split(" "))).collect(Collectors.toSet());
-        System.out.println("Unique words1: "+uniqueWordsNoOrder);
-        List<String> uniqueWordsAsWas = sentences.stream().flatMap(sentence -> Arrays.stream(sentence.split(" "))).distinct().collect(Collectors.toList());
-        System.out.println("Unique words2: "+uniqueWordsAsWas);
+        Set<String> uniqueWordsSet = sentences.stream()
+                .flatMap(sentence -> Arrays.stream(sentence.split(" ")))
+                .collect(Collectors.toSet());
+        System.out.println("Unique words (unordered): " + uniqueWordsSet);
+
+        List<String> uniqueWordsList = sentences.stream()
+                .flatMap(sentence -> Arrays.stream(sentence.split(" ")))
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println("Unique words (ordered): " + uniqueWordsList);
     }
 
-    //Given a list of numbers, find the sum of squares of even numbers
-    public static void taskThree(){
-        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
-        List<Integer> squareOfNums = numbers.stream().filter(num ->num%2==0).map(num -> num*num).collect(Collectors.toList());
-        int sumOfSquareOfNums = numbers.stream().filter(num ->num%2==0).mapToInt(num -> num*num).sum();
+    // Calculates the sum of squares of even numbers from a list
+    public static void calculateSumOfSquaresOfEvens() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int sumOfSquares = numbers.stream()
+                .filter(num -> num % 2 == 0)
+                .mapToInt(num -> num * num)
+                .sum();
 
-        System.out.println("Sum of squares of numbers: "+sumOfSquareOfNums);
-        System.out.println("Squares of numbers: "+squareOfNums);
+        System.out.println("Sum of squares of even numbers: " + sumOfSquares);
     }
 
-    //Given a list of numbers, find the product of all numbers greater than 5
-    public static void taskFour(){
+    // Calculates the product of all numbers greater than 5 in a list
+    public static void calculateProductOfNumbersGreaterThan5() {
         List<Integer> numbers = Arrays.asList(2, 5, 7, 10, 3, 8);
-        int sumOfMultiGreaterThan5 = numbers.stream().filter(num ->num>5).reduce(1, (a,b) -> a*b);
-        System.out.println("Sum of squares of numbers>5: "+sumOfMultiGreaterThan5);
+        int product = numbers.stream()
+                .filter(num -> num > 5)
+                .reduce(1, (a, b) -> a * b);
+
+        System.out.println("Product of numbers > 5: " + product);
     }
 
-    public static void wordCountStreamOld(String str){
+    // Counts the occurrences of each word in a string using streams
+    public static void wordCountUsingStreams(String str) {
         List<String> wordList = Arrays.asList(str.split(" "));
-        Map<String, Long> varWordCountStream = wordList.stream().collect(Collectors.groupingBy(word -> word, Collectors.counting()));
-        System.out.println("varWordCountStream: "+varWordCountStream);
+        Map<String, Long> wordCount = wordList.stream()
+                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
+
+        System.out.println("Word count using streams: " + wordCount);
     }
 
-    public static void wordCountMap(String str){
-
-
+    // Counts the occurrences of each word in a string using a map
+    public static void wordCountUsingMap(String str) {
         List<String> words = Arrays.asList(str.split(" "));
+        Map<String, Integer> wordCount = new HashMap<>();
 
-        Map<String, Integer> wordsCount = new HashMap<>();
-
-        for(int i=0;i<words.size();i++){
-            if(wordsCount.containsKey(words.get(i))){
-                wordsCount.put(words.get(i), wordsCount.get(words.get(i))+1);
-            }
-            else{
-                wordsCount.put(words.get(i), 1);
-            }
+        for (String word : words) {
+            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
         }
+
+        System.out.println("Word count using map: " + wordCount);
     }
 
-    public static void makeWordNumMapOneChar(String code, String expString){
+    // Decodes a string with single-character codes and counts (e.g., "a1b2")
+    public static void decodeSingleCharCount(String code, String expected) {
+        StringBuilder decodedString = new StringBuilder();
+        while (code.length() > 1) {
+            String character = code.substring(0, 1);
+            int count = Integer.parseInt(code.substring(1, 2));
 
-
-        StringBuilder finalString = new StringBuilder();
-        while(code.length()>1){
-
-            String targetStr = code.substring(0,1);
-            int count = Integer.parseInt(code.substring(1,2));
-
-            for(int i=0;i<count;i++){
-                finalString.append(targetStr);// a aa aaa
-            }
-
+            decodedString.append(character.repeat(count));
             code = code.substring(2);
-
         }
 
-        System.out.println("finalString: "+finalString);
-        System.out.println(expString.contentEquals(finalString));
+        System.out.println("Decoded string: " + decodedString);
+        System.out.println("Matches expected: " + expected.contentEquals(decodedString));
     }
 
-    public static void makeWordNumMapMultipleChar(String code, String expString){
-        StringBuilder codeSnip = new StringBuilder();
-        StringBuilder countSnip = new StringBuilder();
-        for(String c : code.split("")) {
+    // Decodes a string with multi-character codes and counts (e.g., "a1b2c3")
+    public static void decodeMultiCharCount(String code, String expected) {
+        StringBuilder characters = new StringBuilder();
+        StringBuilder counts = new StringBuilder();
+
+        for (String c : code.split("")) {
             if (Character.isDigit(c.charAt(0))) {
-                countSnip.append(c).append(",");
-                codeSnip.append(" ");
+                counts.append(c).append(",");
+                characters.append(" ");
             } else {
-                codeSnip.append(c);
+                characters.append(c);
             }
         }
-        codeSnip = new StringBuilder(codeSnip.toString().trim()); //a s d f
-        countSnip = new StringBuilder(countSnip.toString().trim().replaceAll(","," ").trim()); //1,2,3,4 -> 1 2 3 4 -> 1 2 3 4
 
-        String[] regCode = codeSnip.toString().split(" ");
-        String[] regCount = countSnip.toString().split(" ");
+        String[] charArray = characters.toString().trim().split(" ");
+        String[] countArray = counts.toString().trim().replaceAll(",", " ").trim().split(" ");
 
-        StringBuilder finalCode = new StringBuilder();
-        int i = 0;
-        while(i<regCode.length){
-            for(int j=0;j<Integer.parseInt(regCount[i]);j++){
-                finalCode.append(regCode[i]);
-            }
-            i++;
+        StringBuilder decodedString = new StringBuilder();
+        for (int i = 0; i < charArray.length; i++) {
+            decodedString.append(charArray[i].repeat(Integer.parseInt(countArray[i])));
         }
-        System.out.println(finalCode.toString().contentEquals(expString));
-        System.out.println("finalCode: "+finalCode);
-        System.out.println("expString: "+expString);
+
+        System.out.println("Decoded string: " + decodedString);
+        System.out.println("Matches expected: " + expected.contentEquals(decodedString));
     }
 }
