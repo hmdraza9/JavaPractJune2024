@@ -11,9 +11,16 @@ public class Streams3 {
 
     public static void charCountStreamNew(){
 
-        Map<String, Long> charCountStream = Arrays.stream(str.split("")).collect(Collectors.groupingBy(word ->word, Collectors.counting()));
+        Map<String, Long> charCountStream = Arrays.stream(str.split("")).collect(Collectors.groupingBy(word -> word, Collectors.counting()));
 
         System.out.println("charCountStream: "+charCountStream);
+
+        System.out.println("Str        : "+Arrays.toString(str.split("")));
+        System.out.println("Str \\\\d     : "+Arrays.toString(str.split("\\d")));
+        System.out.println("Str \\\\d+    : "+Arrays.toString(str.split("\\d+")));
+        System.out.println("Str \\\\D     : "+Arrays.toString(str.split("\\D")));
+        System.out.println("Str \\\\D+    : "+Arrays.toString(str.split("\\D+")));
+        System.out.println("Str [\\\\d\\\\W] : "+Arrays.toString(str.split("[\\d\\W]")));
 
     }
 
@@ -21,7 +28,7 @@ public class Streams3 {
 
         String[] onlyNumbers = str.split("\\D+");
 
-        long sum = Arrays.stream(onlyNumbers).filter(numm -> !numm.isEmpty()).mapToLong(Long::parseLong).sum();
+        long sum = Arrays.stream(onlyNumbers).filter(number -> !number.isEmpty()).mapToLong(Long::parseLong).sum();
 
         System.out.println("Sum: "+sum);
     }
