@@ -14,13 +14,13 @@ public class UseOfStreamWithListOfIntegers {
 
     public static void main(String[] args){
 
-        stringCountRepsStream();
-        mapToJSON();
-        twoListUniqueEvenWithStream();
+        countStringOccurrences();
+        convertMapToJson();
+        mergeAndFilterUniqueEvenNumbers();
 
     }
 
-    public static void stringCountRepsStream(){
+    public static void countStringOccurrences(){
         String str = "1,3,46,78,9,0,3,45,67,1,1,2,1,56,78,9,9,9,3,3,46,0,0";
 
         List<String> numbers = Arrays.asList(str.split(","));
@@ -32,7 +32,7 @@ public class UseOfStreamWithListOfIntegers {
         map = reps;
     }
 
-    private static void twoListUniqueEvenWithStream(){
+    private static void mergeAndFilterUniqueEvenNumbers(){
         List<Integer> list1 = Arrays.asList(1,2,34,1,2,1);
         List<Integer> list2 = Arrays.asList(3,4,5,9,6,9,7,8);
 
@@ -46,7 +46,7 @@ public class UseOfStreamWithListOfIntegers {
         System.out.println("finalList: "+finalList);
     }
 
-    private static void mapToJSON(){
+    private static void convertMapToJson(){
         JSONObject jsonObject = new JSONObject(map);
         System.out.println(jsonObject);
     }
