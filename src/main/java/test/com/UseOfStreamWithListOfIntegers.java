@@ -6,8 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class TestH {
+public class UseOfStreamWithListOfIntegers {
 
     private static Map<String, Long> map;
 
@@ -15,6 +16,7 @@ public class TestH {
 
         stringCountRepsStream();
         mapToJSON();
+        twoListUniqueEvenWithStream();
 
     }
 
@@ -28,6 +30,20 @@ public class TestH {
         System.out.println(reps);
 
         map = reps;
+    }
+
+    private static void twoListUniqueEvenWithStream(){
+        List<Integer> list1 = Arrays.asList(1,2,34,1,2,1);
+        List<Integer> list2 = Arrays.asList(3,4,5,9,6,9,7,8);
+
+        List<Integer> finalList = Stream.of(list1, list2)
+                .flatMap(List::stream)
+                .filter(num -> num % 2 == 0)
+                .distinct()
+                .sorted()
+                .toList();
+
+        System.out.println("finalList: "+finalList);
     }
 
     private static void mapToJSON(){
