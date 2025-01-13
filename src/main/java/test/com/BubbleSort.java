@@ -2,7 +2,7 @@ package test.com;
 
 import java.util.Arrays;
 
-public class bubbleSort {
+public class BubbleSort {
 
     private static int[] mergedArray;
 
