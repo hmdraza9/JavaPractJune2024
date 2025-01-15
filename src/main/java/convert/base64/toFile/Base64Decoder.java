@@ -64,7 +64,7 @@ public class Base64Decoder {
 		scanner.close();
 	}
 
-	private static String getFormat(String base64String) {
+	public static String getFormat(String base64String) {
 
 		decodedBytes = Base64.getDecoder().decode(base64String);
 
