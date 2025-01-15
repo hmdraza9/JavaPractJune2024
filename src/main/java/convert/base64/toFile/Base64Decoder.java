@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class Base64Decoder {
 
 	public static byte[] decodedBytes;
+	public static String tempString = "Hello";
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 
